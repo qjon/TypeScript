@@ -1,0 +1,21 @@
+{
+  "name": "typescript-examples",
+  "version": "1.0.0",
+  "description": "Examples of  typescrip",
+  "main": "",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qjon/TypeScript.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qjon/TypeScript/issues"
+  },
+  "homepage": "https://github.com/qjon/TypeScript#readme",
+  "dependencies": {
+    "ts-promise": "^0.3.1",
+    "typescript": "^2.0.3"
+  }
+}
