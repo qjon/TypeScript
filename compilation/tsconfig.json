@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "outFile": "./out.js",
-    "module": "commonjs",
+    "module": "amd",
     "target": "es5",
     "removeComments": true,
     "sourceMap": true
