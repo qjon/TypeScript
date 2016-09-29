@@ -18,11 +18,11 @@ export class ChooseModalCtrl {
         }
     }
 
-    public ok(closeMessage) {
+    public ok(closeMessage: string): void {
         this.$uibModalInstance.close(closeMessage);
     };
 
-    public close(closeMessage) {
+    public close(closeMessage: string): void {
         if (!closeMessage) {
             closeMessage = 'CLOSE';
         }

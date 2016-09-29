@@ -1,12 +1,14 @@
 /// <reference path="typings/index.d.ts" />
-
 import {IModalDataDto} from "./IModalDataDto";
 import {IModalOptionsDto} from "./IModalOptionsDto";
 import IModalService = angular.ui.bootstrap.IModalService;
 
-export function chooseFactory($uibModal: IModalService, chooseValues: chooseValues) {
-    return (modalData: IModalDataDto, modalOptions: IModalOptionsDto) => {
-        let defaultOptions = angular.copy(chooseValues.defaultValue);
+export class ChooseFactory {
+    public static $uibModal: IModalService;
+    public static chooseValues: chooseValues;
+
+    public static choose(modalData: IModalDataDto, modalOptions: IModalOptionsDto) {
+        let defaultOptions = angular.copy(this.chooseValues.defaultValue);
         let options = angular.extend({}, defaultOptions, modalOptions);
         let data = angular.extend({}, options.defaultData, modalData);
 
@@ -40,8 +42,13 @@ export function chooseFactory($uibModal: IModalService, chooseValues: chooseValu
             }
         };
 
-        return $uibModal.open(options).result;
+        return this.$uibModal.open(options).result;
+    }
+
+    public static factory($uibModal: IModalService, chooseValues: chooseValues) {
+        this.$uibModal = $uibModal;
+        this.chooseValues = chooseValues;
+
+        return this.choose;
     }
 }
-
-chooseFactory.$inject = ['$uibModal', 'chooseValues'];
