@@ -1,6 +1,6 @@
 /// <reference path="typings/index.d.ts" />
-import {IModalDataDto} from "./IModalDataDto";
-import {IModalOptionsDto} from "./IModalOptionsDto";
+import {IModalDataDto} from "./interfaces/IModalDataDto";
+import {IModalOptionsDto} from "./interfaces/IModalOptionsDto";
 import IModalService = angular.ui.bootstrap.IModalService;
 
 export class ChooseFactory {

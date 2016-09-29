@@ -1,5 +1,6 @@
 /// <reference path="typings/index.d.ts" />
-import {IConfirmationScope} from "./IConfirmationScope";
+/// <reference path="interfaces/IModalScope" />
+import IModalScope = ectsp.IModalScope;
 export class YesNoService {
     static $inject = ['$choose'];
 
@@ -7,7 +8,7 @@ export class YesNoService {
 
     }
 
-    public link(scope: IConfirmationScope, element: ng.IRootElementService) {
+    public link(scope: IModalScope, element: ng.IRootElementService) {
         element
             .unbind('click')
             .bind('click', function ($event) {
@@ -15,7 +16,7 @@ export class YesNoService {
 
                 $event.preventDefault();
 
-                if (scope.confirmIf === false) {
+                if (scope.confirmIf) {
                     scope.$apply(scope.ngClick);
                     return;
                 }

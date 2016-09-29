@@ -1,5 +1,5 @@
 /// <reference path="typings/index.d.ts" />
-import {IModalDataDto} from "./IModalDataDto";
+import {IModalDataDto} from "./interfaces/IModalDataDto";
 import IModalServiceInstance = angular.ui.bootstrap.IModalServiceInstance;
 
 export class ChooseModalCtrl {

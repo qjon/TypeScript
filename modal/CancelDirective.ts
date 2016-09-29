@@ -1,12 +1,17 @@
+/// <reference path="interfaces/ICancelationScope" />
 import {YesNoService} from "./YesNoService";
-import {IConfirmationScope} from "./IConfirmationScope";
+import ICancelationScope = ectsp.ICancelationScope;
 
 export class CancelDirective {
-    public link: (scope: IConfirmationScope, element: ng.IAugmentedJQuery) => void;
-    public scope: IConfirmationScope;
+    public link: (scope: ICancelationScope, element: ng.IAugmentedJQuery) => void;
+    public scope: ICancelationScope = {
+        confirmIf: '=',
+        ngClick: '&',
+        cancel: '@'
+    };
 
     constructor(chooseYesNo: YesNoService) {
-        CancelDirective.prototype.link = (scope: IConfirmationScope, element: ng.IAugmentedJQuery) => {
+        CancelDirective.prototype.link = (scope: ICancelationScope, element: ng.IAugmentedJQuery) => {
             scope.confirmOk = 'CTSP-BTTN-80';
             scope.confirmCancel = 'CTSP-BTTN-81';
             scope.confirmTitle = 'CTSP-LBL-351';
