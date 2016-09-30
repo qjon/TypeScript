@@ -10,6 +10,5 @@ namespace ectsp {
         ngClick: any;
         size?: number;
         templateUrl?: string;
-        $apply?(exp: string): any;
     }
 }

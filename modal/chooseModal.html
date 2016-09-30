@@ -1,0 +1,34 @@
+<div class="dialog_header">
+    <h1 data-translate="{{$ctrl.data.title}}"></h1>
+</div>
+<div class="dialog_close" ng-if="$ctrl.data.closable">
+    <a ng-click="$ctrl.close()" href class="close_modal">
+        <span class="ectsp_close"></span>
+    </a>
+</div>
+<div class="dialog_content fixed_width">
+    <div ng-if="$ctrl.data.template" ng-include="$ctrl.data.template"></div>
+    <div ng-if="!$ctrl.data.template">
+        <div ng-if="$ctrl.isTextArray">
+            <p ng-repeat="translationId in $ctrl.data.text" data-translate="{{translationId}}" data-translate-values="$ctrl.data.textValues[$index]"></p>
+        </div>
+        <p ng-if="!$ctrl.isTextArray" data-translate="{{$ctrl.data.text}}" data-translate-values="{{$ctrl.data.textValues}}"></p>
+    </div>
+    <div class="dialog_actions clearfix">
+        <div class="actions_left">
+            <button ng-repeat="button in ::$ctrl.data.buttons | filter: {position: 'left'}" ng-click="$ctrl.ok(button.action)" type="button" class="btn_normal btn_action {{button.cssClass}}" style="float: none;">
+                <span class="btn_text" data-translate="{{button.name}}"></span>
+            </button>
+        </div>
+        <div class="actions_right" style="float: none; text-align: center;">
+            <button ng-repeat="button in ::$ctrl.data.buttons | filter: {position: 'center'}" ng-click="$ctrl.ok(button.action)" type="button" class="btn_normal btn_action {{button.cssClass}}" style="float: none;">
+                <span class="btn_text" data-translate="{{button.name}}"></span>
+            </button>
+        </div>
+        <div class="actions_right">
+            <button ng-repeat="button in ::$ctrl.data.buttons | filter: {position: 'right'}" ng-click="$ctrl.ok(button.action)" type="button" class="btn_normal btn_action {{button.cssClass}}" style="float: none;">
+                <span class="btn_text" data-translate="{{button.name}}"></span>
+            </button>
+        </div>
+    </div>
+</div>

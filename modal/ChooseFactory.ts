@@ -4,10 +4,14 @@ import {IModalOptionsDto} from "./interfaces/IModalOptionsDto";
 import IModalService = angular.ui.bootstrap.IModalService;
 
 export class ChooseFactory {
-    public static $uibModal: IModalService;
-    public static chooseValues: chooseValues;
+    static $inject = ['$uibModal', 'chooseValues'];
 
-    public static choose(modalData: IModalDataDto, modalOptions: IModalOptionsDto) {
+    public constructor(private $uibModal: IModalService, private chooseValues: chooseValues) {
+    }
+
+    public choose(modalData: IModalDataDto, modalOptions: IModalOptionsDto) {
+        console.log(modalData, modalOptions);
+
         let defaultOptions = angular.copy(this.chooseValues.defaultValue);
         let options = angular.extend({}, defaultOptions, modalOptions);
         let data = angular.extend({}, options.defaultData, modalData);
@@ -42,13 +46,19 @@ export class ChooseFactory {
             }
         };
 
+        options.bindToController = true;
+        options.controllerAs = '$ctrl';
+
         return this.$uibModal.open(options).result;
     }
+}
 
-    public static factory($uibModal: IModalService, chooseValues: chooseValues) {
-        this.$uibModal = $uibModal;
-        this.chooseValues = chooseValues;
+export class ChooseFactoryProxy {
+    public static proxy() {
+        return ($uibModal: IModalService, chooseValues: chooseValues) => {
+            let factory = new ChooseFactory($uibModal, chooseValues);
 
-        return this.choose;
+            return factory.choose.bind(factory);
+        };
     }
 }

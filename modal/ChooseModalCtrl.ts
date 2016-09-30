@@ -13,7 +13,7 @@ export class ChooseModalCtrl {
 
         if (this.timeout) {
             $timeout(() => {
-                // this.close();
+                this.close('so');
             }, this.timeout);
         }
     }

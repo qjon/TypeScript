@@ -1,0 +1,16 @@
+<div class="dialog_content fixed_width">
+    <div style="text-align: center">
+        <p ng-if="$ctrl.data.title" data-translate="{{$ctrl.data.title}}" style="font-weight: bold;"></p>
+        <div ng-if="isTextArray">
+            <p ng-repeat="translationId in $ctrl.data.text" data-translate="{{translationId}}" data-translate-values="$ctrl.data.textValues[$index]"></p>
+        </div>
+        <p ng-if="!isTextArray" data-translate="{{$ctrl.data.text}}" data-translate-values="{{$ctrl.data.textValues}}"></p>
+    </div>
+    <div class="dialog_actions clearfix">
+        <div class="actions_right" style="float: none; text-align: center;">
+            <button ng-repeat="button in ::$ctrl.data.buttons" ng-click="$ctrl.ok(button.action)" ng-class="button.cssClass" type="button" class="btn_normal btn_action" style="float: none;">
+                <span class="btn_text" data-translate="{{button.name}}"></span>
+            </button>
+        </div>
+    </div>
+</div>

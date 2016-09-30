@@ -1,32 +1,35 @@
 /// <reference path="interfaces/IConfirmationScope" />
-import {YesNoService} from "./YesNoService";
-import IConfirmationScope = ectsp.IConfirmationScope;
+import {BaseDialogDirective} from "./BaseDialogDirective";
 
-export class ConfirmDirective {
-    public link: (scope: IConfirmationScope, element: ng.IAugmentedJQuery) => void;
-    public scope: IConfirmationScope = {
+export class ConfirmDirective extends BaseDialogDirective implements ng.IDirective {
+    public link: (scope: ng.IScope, element: ng.IAugmentedJQuery) => void;
+    public scope: any = {
         confirm: '@',
         confirmIf: '=',
         ngClick: '&'
     };
+    public priority: number = 1;
+    public restrict: string = 'A';
 
-    constructor(chooseYesNo: YesNoService) {
-        ConfirmDirective.prototype.link = (scope: IConfirmationScope, element: ng.IAugmentedJQuery) => {
-            scope.confirmOk = 'Yes';
-            scope.confirmCancel = 'No';
-            scope.confirmTitle = 'Confirmation';
-            scope.message = scope.confirm;
+    constructor(public $choose: any) {
+        super($choose);
 
-            chooseYesNo.link.apply(this, [scope, element]);
+        ConfirmDirective.prototype.link = (scope: ng.IScope, element: ng.IAugmentedJQuery) => {
+            scope['confirmOk'] = 'Yes';
+            scope['confirmCancel'] = 'No';
+            scope['confirmTitle'] = 'Confirmation';
+            scope['message'] = scope['confirm'];
+
+            this.openDialog(scope, element);
         };
     }
 
-    public static Factory() {
-        var directive = (chooseYesNo: YesNoService) => {
-            return new ConfirmDirective(chooseYesNo);
+    public static Factory(): ng.IDirectiveFactory {
+        let directive = ($choose: any) => {
+            return new ConfirmDirective($choose);
         };
 
-        directive['$inject'] = ['chooseYesNo'];
+        directive['$inject'] = ['$choose'];
 
         return directive;
     }

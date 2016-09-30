@@ -1,10 +1,9 @@
 /// <reference path="interfaces/IYesNoScope" />
-import {YesNoService} from "./YesNoService";
-import IYesNoScope = ectsp.IYesNoScope;
+import {BaseDialogDirective} from "./BaseDialogDirective";
 
-export class YesNoDirective {
-    public link: (scope: IYesNoScope, element: ng.IAugmentedJQuery) => void;
-    public scope: IYesNoScope = {
+export class YesNoDirective extends BaseDialogDirective implements ng.IDirective {
+    public link: (scope: ng.IScope, element: ng.IAugmentedJQuery) => void;
+    public scope: any = {
         confirmIf: '<',
         ngClick: '&',
         yesButton: '@',
@@ -13,25 +12,29 @@ export class YesNoDirective {
         templateUrl: '@',
         yesNo: '@'
     };
+    public priority: number = 1;
+    public restrict: string = 'A';
 
-    constructor(chooseYesNo: YesNoService) {
-        YesNoDirective.prototype.link = (scope: IYesNoScope, element: ng.IAugmentedJQuery) => {
-            scope.confirmOk = scope.yesButton || 'CTSP-BTTN-80';
-            scope.confirmCancel = scope.noButton || 'CTSP-BTTN-81';
-            scope.confirmTitle = scope.title;
-            scope.message = scope.yesNo;
-            scope.size = 500;
+    constructor(public $choose: any) {
+        super($choose);
 
-            chooseYesNo.link.apply(this, [scope, element]);
+        YesNoDirective.prototype.link = (scope: ng.IScope, element: ng.IAugmentedJQuery) => {
+            scope['confirmOk'] = scope['yesButton'] || 'CTSP-BTTN-80';
+            scope['confirmCancel'] = scope['noButton'] || 'CTSP-BTTN-81';
+            scope['confirmTitle'] = scope['title'];
+            scope['message'] = scope['yesNo'];
+            scope['size'] = 500;
+
+            this.openDialog(scope, element);
         };
     }
 
-    public static Factory() {
-        var directive = (chooseYesNo: YesNoService) => {
-            return new YesNoDirective(chooseYesNo);
+    public static Factory(): ng.IDirectiveFactory {
+        let directive = ($choose: any) => {
+            return new YesNoDirective($choose);
         };
 
-        directive['$inject'] = ['chooseYesNo'];
+        directive['$inject'] = ['$choose'];
 
         return directive;
     }

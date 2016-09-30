@@ -1,0 +1,24 @@
+<div class="dialog_content fixed_width">
+    <h1 data-translate="{{$ctrl.data.title}}"></h1>
+    <div ng-if="isTextArray">
+        <p ng-repeat="translationId in $ctrl.data.text" data-translate="{{$ctrl.translationId}}" data-translate-values="$ctrl.data.textValues[$index]"></p>
+    </div>
+    <p ng-if="!isTextArray" data-translate="{{$ctrl.data.text}}" data-translate-values="{{$ctrl.data.textValues}}"></p>
+    <div class="dialog_actions clearfix">
+        <div class="actions_left">
+            <button ng-repeat="button in ::$ctrl.data.buttons | filter: {position: 'left'}" ng-click="$ctrl.ok(button.action)" type="button" class="btn_normal btn_action {{button.cssClass}}" style="float: none;">
+                <span class="btn_text" data-translate="{{button.name}}"></span>
+            </button>
+        </div>
+        <div class="actions_right" style="float: none; text-align: center;">
+            <button ng-repeat="button in ::$ctrl.data.buttons | filter: {position: 'center'}" ng-click="$ctrl.ok(button.action)" type="button" class="btn_normal btn_action {{button.cssClass}}" style="float: none;">
+                <span class="btn_text" data-translate="{{button.name}}"></span>
+            </button>
+        </div>
+        <div class="actions_right">
+            <button ng-repeat="button in ::$ctrl.data.buttons | filter: {position: 'right'}" ng-click="$ctrl.ok(button.action)" type="button" class="btn_normal btn_action {{button.cssClass}}" style="float: none;">
+                <span class="btn_text" data-translate="{{button.name}}"></span>
+            </button>
+        </div>
+    </div>
+</div>
