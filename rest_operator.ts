@@ -1,3 +1,5 @@
+type Car = '1' | '2' | '3';
+
 function restOperator(a: number, ...numbers: number[]): number {
     numbers.forEach((n) => a += n);
 

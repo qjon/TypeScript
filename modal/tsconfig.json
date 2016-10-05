@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outFile": "./out.js",
+    "outDir": "outdir",
     "module": "commonjs",
     "target": "es5",
     "removeComments": true,

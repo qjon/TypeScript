@@ -46,7 +46,7 @@ class User3 {
 }
 
 let user3 = new User3('Kelly', 'Davis');
-user2.getFullName(); // Kelly Davis
+user3.getFullName(); // Kelly Davis
 
-user2.firstName = 'Peter';
-console.log(user2.firstName); // Peter
+user3.firstName = 'Peter';
+console.log(user3.firstName); // Peter

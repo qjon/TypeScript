@@ -36,6 +36,7 @@ export class ChooseValues {
 
     public cancelation(data: string|IModalDataDto): IChooseModalSettings {
         let value: IModalDataDto;
+
         if (_.isString(data)) {
             value = {text: data};
         } else {
