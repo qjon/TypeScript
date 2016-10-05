@@ -1,9 +1,12 @@
 {
   "compilerOptions": {
-    "outDir": "outdir",
     "module": "commonjs",
     "target": "es5",
     "removeComments": true,
     "sourceMap": true
-  }
+  },
+  "exclude" : [
+    "node_modules/",
+    "test/"
+  ]
 }

@@ -2,11 +2,12 @@
 import {IModalDataDto} from "./interfaces/IModalDataDto";
 import {IModalOptionsDto} from "./interfaces/IModalOptionsDto";
 import IModalService = angular.ui.bootstrap.IModalService;
+import {ChooseValues} from "./ChooseValues";
 
 export class ChooseFactory {
     static $inject = ['$uibModal', 'chooseValues'];
 
-    public constructor(private $uibModal: IModalService, private chooseValues: chooseValues) {
+    public constructor(private $uibModal: IModalService, private chooseValues: ChooseValues) {
     }
 
     public choose(modalData: IModalDataDto, modalOptions: IModalOptionsDto) {
@@ -55,7 +56,7 @@ export class ChooseFactory {
 
 export class ChooseFactoryProxy {
     public static proxy() {
-        return ($uibModal: IModalService, chooseValues: chooseValues) => {
+        return ($uibModal: IModalService, chooseValues: ChooseValues) => {
             let factory = new ChooseFactory($uibModal, chooseValues);
 
             return factory.choose.bind(factory);
