@@ -4,3 +4,4 @@
 node_modules
 typings
 modal/coverage
+!modal/karma.conf.js

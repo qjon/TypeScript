@@ -48,7 +48,6 @@ describe('ChooseValues', () => {
             expect(cancelationData).toEqual(chooseValues.cancelation('some str'));
         });
 
-
         it('should return proper object if passed argument is IModalDataDto', () => {
             let cancelationData: IModalOptionsDto = {
                 title: 'CTSP-LBL-351',
